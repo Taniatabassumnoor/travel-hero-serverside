@@ -26,20 +26,20 @@ async function run() {
     const reviewCollection = database.collection("reviews");
     const blogsCollection = database.collection("blogs");
 
-    // blog get
+    //admin blog get
     app.get("/blogs", async (req, res) => {
       const cursor = blogsCollection.find({});
       const blogs = await cursor.toArray();
       res.json(blogs);
     });
-    // single blog
+    //admin single blog
     app.get("/blogs/:id", async (req, res) => {
       const id = req.params.id;
       const query = { _id: ObjectId(id) };
       const result = await blogsCollection.findOne(query);
       res.json(result);
     });
-    // blog post
+    //admin blog post
     app.post("/blogs", async (req, res) => {
       const title = req.body.title;
       const author = req.body.author;
